@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KNETIC Advisors Inc. — Healthcare Privacy Compliance | BC Canada</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Barlow+Condensed:wght@600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f2342;--navy2:#1a3357;--cobalt:#1a6eb5;--steel:#7aa3c8;--silver:#b8c5d0;--gold:#c0a96a;--light:#f4f6f9;--white:#ffffff;--text:#1c2b3a;--muted:#5a7080;--border:#dde3ea;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;color:var(--text);background:var(--white);line-height:1.6;}
+  .page{display:none;}.page.active{display:block;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.08);padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+  .nav-logo{display:flex;align-items:center;gap:14px;cursor:pointer;}
+  .nav-logo svg{height:38px;width:auto;}
+  .nav-brand{display:flex;flex-direction:column;line-height:1;}
+  .nav-brand .name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;letter-spacing:2px;color:var(--white);}
+  .nav-brand .sub{font-size:9px;font-weight:400;letter-spacing:3px;color:var(--steel);text-transform:uppercase;margin-top:2px;}
+  .nav-links{display:flex;align-items:center;gap:4px;}
+  .nav-links button{background:none;border:none;color:var(--silver);font-family:'Barlow',sans-serif;font-size:13px;font-weight:500;letter-spacing:1px;padding:8px 14px;cursor:pointer;border-radius:4px;transition:all 0.2s;}
+  .nav-links button:hover{color:var(--white);background:rgba(255,255,255,0.06);}
+  .nav-links button.active{color:var(--white);}
+  .nav-cta{background:var(--cobalt)!important;color:var(--white)!important;padding:8px 18px!important;border-radius:4px!important;margin-left:8px!important;}
+  .nav-cta:hover{background:#1560a0!important;}
+  .alert-banner{background:linear-gradient(90deg,#6b2600,#9a3800);color:#fff;text-align:center;padding:10px 24px;font-size:13px;font-weight:500;letter-spacing:0.3px;margin-top:68px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;}
+  .alert-banner a{color:#ffd580;font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+  .alert-dot{width:8px;height:8px;background:#ff6b35;border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.3);}}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#1e4070 100%);padding:90px 32px 80px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(26,110,181,0.15) 0%,transparent 70%);border-radius:50%;}
+  .hero-inner{max-width:1060px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 400px;gap:56px;align-items:center;}
+  .hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .hero h1{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:800;line-height:1.05;color:var(--white);letter-spacing:1px;margin-bottom:20px;}
+  .hero h1 span{color:var(--steel);}
+  .hero-desc{font-size:16px;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:32px;max-width:500px;}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{background:var(--cobalt);color:var(--white);border:none;padding:13px 26px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:600;letter-spacing:0.5px;border-radius:4px;cursor:pointer;transition:all 0.2s;}
+  .btn-primary:hover{background:#1560a0;transform:translateY(-1px);}
+  .btn-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.3);padding:13px 26px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:500;border-radius:4px;cursor:pointer;transition:all 0.2s;}
+  .btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.06);}
+  .hero-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:28px;backdrop-filter:blur(10px);}
+  .hero-card-title{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .hero-stat{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+  .hero-stat:last-child{border-bottom:none;}
+  .hero-stat-icon{width:34px;height:34px;background:rgba(26,110,181,0.2);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;}
+  .hero-stat-text strong{display:block;font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;}
+  .hero-stat-text span{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.4;}
+  section{padding:72px 32px;}
+  .section-inner{max-width:1060px;margin:0 auto;}
+  .section-eyebrow{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--cobalt);margin-bottom:12px;}
+  .section-title{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800;color:var(--navy);line-height:1.1;letter-spacing:0.5px;margin-bottom:14px;}
+  .section-lead{font-size:15px;font-weight:300;color:var(--muted);max-width:600px;line-height:1.7;margin-bottom:44px;}
+  .hpoa-callout{background:var(--navy);border-radius:10px;padding:36px 44px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;margin-bottom:52px;}
+  .hpoa-callout h3{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;color:var(--white);letter-spacing:0.5px;margin-bottom:8px;}
+  .hpoa-callout p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.65;max-width:540px;}
+  .hpoa-btn{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:13px;letter-spacing:0.5px;padding:13px 22px;border-radius:4px;text-decoration:none;white-space:nowrap;transition:all 0.2s;cursor:pointer;}
+  .hpoa-btn:hover{background:#d4bc7a;}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:48px;}
+  .service-card{background:var(--light);border:1px solid var(--border);border-radius:8px;padding:30px 26px;transition:all 0.25s;}
+  .service-card:hover{border-color:var(--cobalt);box-shadow:0 8px 32px rgba(26,110,181,0.10);transform:translateY(-2px);}
+  .service-icon{width:46px;height:46px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px;}
+  .service-card h3{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;color:var(--navy);letter-spacing:0.3px;margin-bottom:9px;}
+  .service-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+  .service-tag{display:inline-block;margin-top:14px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cobalt);border:1px solid var(--cobalt);border-radius:3px;padding:3px 9px;}
+  .vcpo-section{background:var(--light);}
+  .vcpo-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .vcpo-features{display:flex;flex-direction:column;gap:22px;}
+  .vcpo-feature{display:flex;gap:16px;align-items:flex-start;}
+  .vcpo-feature-num{width:34px;height:34px;background:var(--navy);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;flex-shrink:0;}
+  .vcpo-feature h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px;}
+  .vcpo-feature p{font-size:13px;color:var(--muted);line-height:1.6;}
+  .vcpo-visual{background:var(--navy);border-radius:10px;padding:36px 32px;}
+  .vcpo-visual-title{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+  .vcpo-step{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .vcpo-step:last-child{border-bottom:none;}
+  .vcpo-step-dot{width:9px;height:9px;background:var(--cobalt);border-radius:50%;flex-shrink:0;margin-top:5px;}
+  .vcpo-step strong{display:block;font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;}
+  .vcpo-step span{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.45;}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .why-card{text-align:center;padding:30px 18px;border-radius:8px;border:1px solid var(--border);}
+  .why-num{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:800;color:var(--cobalt);line-height:1;margin-bottom:7px;}
+  .why-card h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:7px;}
+  .why-card p{font-size:13px;color:var(--muted);line-height:1.55;}
+  .cta-strip{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:60px 32px;text-align:center;}
+  .cta-strip h2{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800;color:var(--white);margin-bottom:12px;}
+  .cta-strip p{color:rgba(255,255,255,0.6);font-size:15px;font-weight:300;margin-bottom:28px;}
+  .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  footer{background:#080f1a;padding:44px 32px 24px;}
+  .footer-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:20px;}
+  .footer-brand p{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-top:12px;max-width:300px;}
+  .footer-col h4{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;}
+  .footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:9px;cursor:pointer;transition:color 0.2s;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{max-width:1060px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.22);}
+  .page-hero{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:96px 32px 56px;margin-top:68px;text-align:center;}
+  .page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:800;color:var(--white);letter-spacing:1px;margin-bottom:12px;}
+  .page-hero p{font-size:15px;font-weight:300;color:rgba(255,255,255,0.65);max-width:540px;margin:0 auto;line-height:1.7;}
+  .form-section{padding:56px 32px;background:var(--light);}
+  .form-wrap{max-width:700px;margin:0 auto;background:var(--white);border-radius:10px;border:1px solid var(--border);padding:44px;box-shadow:0 8px 40px rgba(0,0,0,0.06);}
+  .form-title{font-family:'Barlow Condensed',sans-serif;font-size:23px;font-weight:700;color:var(--navy);margin-bottom:5px;}
+  .form-subtitle{font-size:13px;color:var(--muted);margin-bottom:32px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+  .form-group{margin-bottom:18px;}
+  .form-group label{display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--navy);margin-bottom:6px;}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:5px;font-family:'Barlow',sans-serif;font-size:14px;color:var(--text);background:var(--white);transition:border-color 0.2s;outline:none;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--cobalt);}
+  .form-group textarea{resize:vertical;min-height:90px;}
+  .checkbox-group{display:flex;flex-direction:column;gap:9px;}
+  .checkbox-item{display:flex;align-items:center;gap:10px;cursor:pointer;}
+  .checkbox-item input[type="checkbox"]{width:16px;height:16px;accent-color:var(--cobalt);cursor:pointer;}
+  .checkbox-item span{font-size:14px;color:var(--text);}
+  .form-divider{border:none;border-top:1px solid var(--border);margin:28px 0;}
+  .submit-btn{width:100%;background:var(--navy);color:var(--white);border:none;padding:14px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:5px;cursor:pointer;transition:all 0.2s;}
+  .submit-btn:hover{background:var(--navy2);}
+  .form-note{text-align:center;font-size:12px;color:var(--muted);margin-top:12px;}
+  .assessment-wrap{max-width:760px;margin:0 auto;padding:52px 32px;}
+  .assessment-intro{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:36px;margin-bottom:24px;box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+  .assessment-intro h2{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:var(--navy);margin-bottom:9px;}
+  .assessment-intro p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+  .price-badge{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:var(--white);border-radius:6px;padding:10px 18px;font-size:14px;font-weight:500;}
+  .price-badge strong{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--gold);}
+  .assessment-step{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:32px 36px;margin-bottom:18px;box-shadow:0 4px 20px rgba(0,0,0,0.04);}
+  .step-header{display:flex;align-items:center;gap:13px;margin-bottom:22px;}
+  .step-num{width:30px;height:30px;background:var(--cobalt);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;flex-shrink:0;}
+  .step-header h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--navy);letter-spacing:0.3px;}
+  .radio-group{display:flex;flex-direction:column;gap:9px;}
+  .radio-item{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1.5px solid var(--border);border-radius:6px;cursor:pointer;transition:all 0.18s;}
+  .radio-item:hover{border-color:var(--cobalt);background:#f0f6fc;}
+  .radio-item input[type="radio"]{margin-top:2px;accent-color:var(--cobalt);cursor:pointer;flex-shrink:0;}
+  .radio-label{font-size:14px;color:var(--text);line-height:1.4;}
+  .radio-label small{display:block;font-size:12px;color:var(--muted);margin-top:2px;}
+  .score-panel{background:var(--navy);border-radius:10px;padding:36px 40px;margin-top:20px;text-align:center;display:none;}
+  .score-panel.visible{display:block;}
+  .score-number{font-family:'Barlow Condensed',sans-serif;font-size:68px;font-weight:800;color:var(--white);line-height:1;margin-bottom:4px;}
+  .score-label{font-size:12px;color:var(--steel);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
+  .score-bar-wrap{background:rgba(255,255,255,0.1);border-radius:20px;height:9px;margin-bottom:22px;overflow:hidden;}
+  .score-bar{height:100%;border-radius:20px;transition:width 0.8s ease;}
+  .score-rating{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;margin-bottom:9px;}
+  .score-desc{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:24px;}
+  .score-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .assessment-submit{width:100%;background:var(--cobalt);color:var(--white);border:none;padding:14px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:5px;cursor:pointer;transition:all 0.2s;margin-top:8px;}
+  .assessment-submit:hover{background:#1560a0;}
+  .value-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:22px;}
+  .value-list li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--muted);line-height:1.55;}
+  .value-list li::before{content:'→';color:var(--cobalt);font-weight:700;flex-shrink:0;}
+  @media(max-width:860px){.hero-inner{grid-template-columns:1fr;}.hero-card{display:none;}.services-grid{grid-template-columns:1fr;}.vcpo-grid{grid-template-columns:1fr;}.why-grid{grid-template-columns:1fr 1fr;}.hpoa-callout{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.nav-links button:not(.nav-cta){display:none;}.hero{padding:76px 20px 56px;}.hero h1{font-size:38px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <svg viewBox="0 0 68 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M34 4L8 14L8 44C8 60 20 72 34 77C48 72 60 60 60 44L60 14Z" fill="rgba(255,255,255,0.06)" stroke="#7aa3c8" stroke-width="2"/>
+      <path d="M34 11L14 20L14 44C14 57 23 68 34 73C45 68 54 57 54 44L54 20Z" fill="none" stroke="rgba(192,169,106,0.5)" stroke-width="1"/>
+      <line x1="24" y1="22" x2="24" y2="58" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+      <line x1="24" y1="40" x2="48" y2="20" stroke="#1a6eb5" stroke-width="4" stroke-linecap="round"/>
+      <polygon points="48,20 39,20 48,29" fill="#1a6eb5"/>
+      <line x1="24" y1="40" x2="50" y2="60" stroke="#1a6eb5" stroke-width="4" stroke-linecap="round"/>
+      <polygon points="50,60 42,55 47,47" fill="#1a6eb5"/>
+      <circle cx="24" cy="40" r="4" fill="#1a6eb5"/>
+    </svg>
+    <div class="nav-brand"><span class="name">KNETIC</span><span class="sub">Advisors Inc.</span></div>
+  </div>
+  <div class="nav-links">
+    <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
+    <button onclick="showPage('services')" id="nav-services">Services</button>
+    <button onclick="showPage('about')" id="nav-about">About</button>
+    <button onclick="showPage('assessment')" id="nav-assessment">Risk Assessment</button>
+    <button onclick="showPage('intake')" id="nav-intake" class="nav-cta">Get Started</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="alert-banner">
+    <div class="alert-dot"></div>
+    <span>⚡ BC's Health Professions &amp; Occupations Act (HPOA) is now <strong>IN FORCE — April 1, 2026</strong>. Is your practice compliant?</span>
+    <a href="https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/professional-regulation/health-professions-and-occupations-act" target="_blank">Read the legislation →</a>
+  </div>
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">BC Healthcare Privacy Compliance</div>
+        <h1>Your Virtual<br><span>Chief Privacy</span><br>Officer</h1>
+        <p class="hero-desc">KNETIC Advisors delivers expert HPOA privacy compliance for BC health practices — through full on-site assessments, ongoing Virtual CPO services, and practical guidance your team can actually use.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="showPage('intake')">Book a Privacy Assessment</button>
+          <button class="btn-outline" onclick="showPage('assessment')">Free Online Assessment →</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-title">HPOA Compliance Checklist</div>
+        <div class="hero-stat"><div class="hero-stat-icon">🔐</div><div class="hero-stat-text"><strong>Privacy Officer Designation</strong><span>HPOA requires a named Privacy Officer for every regulated practice</span></div></div>
+        <div class="hero-stat"><div class="hero-stat-icon">📋</div><div class="hero-stat-text"><strong>Patient Data Policies</strong><span>Written privacy policies must align with HPOA requirements</span></div></div>
+        <div class="hero-stat"><div class="hero-stat-icon">🏥</div><div class="hero-stat-text"><strong>On-Site Assessment</strong><span>Physical and digital data handling practices reviewed and documented</span></div></div>
+        <div class="hero-stat"><div class="hero-stat-icon">📁</div><div class="hero-stat-text"><strong>Breach Response Plan</strong><span>Mandatory breach notification procedures under new HPOA framework</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="hpoa-callout">
+        <div>
+          <h3>⚠️ HPOA Is Now In Force — April 1, 2026</h3>
+          <p>The Health Professions and Occupations Act replaces BC's Health Professions Act with new, strengthened privacy and data governance obligations for all regulated health practitioners. Non-compliance can result in disciplinary action by your regulatory college.</p>
+        </div>
+        <a class="hpoa-btn" href="https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/professional-regulation/health-professions-and-occupations-act" target="_blank">View Official HPOA Notice →</a>
+      </div>
+
+      <div class="section-eyebrow">What We Do</div>
+      <div class="section-title">Privacy Compliance,<br>Built for BC Health Practices</div>
+      <p class="section-lead">From solo practitioners to multi-site clinics, KNETIC Advisors provides the expertise and structure your practice needs to meet HPOA privacy requirements.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🛡️</div>
+          <h3>Virtual Chief Privacy Officer</h3>
+          <p>We act as your designated Privacy Officer — handling policy development, staff training, and regulatory correspondence on your behalf. Ongoing monthly retainer.</p>
+          <span class="service-tag">Ongoing Service</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <h3>Full On-Site Privacy Assessment</h3>
+          <p>Comprehensive physical and operational audit of your practice. We examine how patient data is collected, stored, accessed, shared, and disposed of — with a detailed compliance report.</p>
+          <span class="service-tag">In-Person</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Online Privacy Risk Tool</h3>
+          <p>Our structured self-assessment questionnaire gives you an instant privacy risk score. Paid reports include actionable recommendations and a compliance roadmap.</p>
+          <span class="service-tag">Self-Serve · Paid</span>
+        </div>
+      </div>
+      <div style="text-align:center;"><button class="btn-primary" onclick="showPage('services')">View All Services →</button></div>
+    </div>
+  </section>
+
+  <section class="vcpo-section">
+    <div class="section-inner">
+      <div class="vcpo-grid">
+        <div>
+          <div class="section-eyebrow">Virtual CPO</div>
+          <div class="section-title">Expert Privacy Leadership — Without the Full-Time Cost</div>
+          <p class="section-lead" style="margin-bottom:28px;">Most small-to-mid BC health practices don't need a full-time Privacy Officer — they need a trusted expert on call. That's exactly what KNETIC delivers.</p>
+          <div class="vcpo-features">
+            <div class="vcpo-feature"><div class="vcpo-feature-num">1</div><div><h4>Designated Privacy Officer on File</h4><p>A named, qualified Privacy Officer for your practice to satisfy HPOA regulatory requirements.</p></div></div>
+            <div class="vcpo-feature"><div class="vcpo-feature-num">2</div><div><h4>Policy Development & Maintenance</h4><p>Custom privacy policies, consent forms, and data handling procedures — drafted, reviewed, and updated as regulations evolve.</p></div></div>
+            <div class="vcpo-feature"><div class="vcpo-feature-num">3</div><div><h4>Staff Training & Awareness</h4><p>Annual and onboarding privacy training for your team, tailored to your practice setting.</p></div></div>
+            <div class="vcpo-feature"><div class="vcpo-feature-num">4</div><div><h4>Incident Response Support</h4><p>When a privacy incident occurs, we guide you through breach assessment, notification, and remediation.</p></div></div>
+          </div>
+        </div>
+        <div class="vcpo-visual">
+          <div class="vcpo-visual-title">On-Site Assessment Process</div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>Initial Intake &amp; Scoping</strong><span>Practice type, size, EHR systems, and regulatory college identified</span></div></div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>On-Site Assessment Visit</strong><span>Physical walkthrough of patient areas, filing, reception, and IT infrastructure</span></div></div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>Policy &amp; Document Review</strong><span>Existing consent forms, privacy notices, and staff agreements evaluated</span></div></div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>Risk Report Delivered</strong><span>Detailed written report with HPOA compliance gaps and priority actions</span></div></div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>Remediation Support</strong><span>We help implement recommendations or transition to ongoing Virtual CPO service</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-inner">
+      <div class="section-eyebrow">Why KNETIC</div>
+      <div class="section-title">Built for BC. Built for Healthcare.</div>
+      <p class="section-lead">We specialize exclusively in BC healthcare privacy — not generic compliance consulting.</p>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-num">HPOA</div><h4>Legislation Specialists</h4><p>Deep expertise in the Health Professions &amp; Occupations Act and what it means for your practice.</p></div>
+        <div class="why-card"><div class="why-num">100%</div><h4>Healthcare Focused</h4><p>We work exclusively with regulated health practitioners and clinics across British Columbia.</p></div>
+        <div class="why-card"><div class="why-num">BC</div><h4>Local &amp; On-Site</h4><p>We come to you. Real on-site assessments by advisors who understand BC regulatory colleges.</p></div>
+        <div class="why-card"><div class="why-num">vCPO</div><h4>Fractional Model</h4><p>Expert Privacy Officer services at a fraction of full-time cost — flexible plans for every practice size.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <h2>Your Practice Needs to Act Now</h2>
+    <p>HPOA is in force. Don't wait for your college to come to you.</p>
+    <div class="cta-btns">
+      <button class="btn-primary" onclick="showPage('intake')">Book an On-Site Assessment</button>
+      <button class="btn-outline" onclick="showPage('assessment')">Take the Free Risk Assessment</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;letter-spacing:2px;color:#fff;">KNETIC Advisors Inc.</span>
+        <p>BC's dedicated healthcare privacy compliance firm. Helping regulated health practitioners meet HPOA requirements through Virtual CPO services and full on-site privacy assessments.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a onclick="showPage('services')">Virtual Chief Privacy Officer</a>
+        <a onclick="showPage('services')">On-Site Assessments</a>
+        <a onclick="showPage('assessment')">Online Risk Assessment</a>
+        <a onclick="showPage('services')">Policy Development</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a onclick="showPage('about')">About KNETIC</a>
+        <a onclick="showPage('intake')">Book an Assessment</a>
+        <a href="https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/professional-regulation/health-professions-and-occupations-act" target="_blank">HPOA Legislation</a>
+        <a href="mailto:info@kneticadvisors.ca">info@kneticadvisors.ca</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 KNETIC Advisors Inc. All rights reserved. BC, Canada.</span><span>Privacy-first. HPOA-ready.</span></div>
+  </footer>
+</div>
+
+<!-- SERVICES -->
+<div class="page" id="page-services">
+  <div class="page-hero">
+    <div class="section-eyebrow" style="color:var(--gold);margin-bottom:10px;">What We Offer</div>
+    <h1>Our Services</h1>
+    <p>Comprehensive privacy compliance designed specifically for BC regulated health professionals and clinics.</p>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-bottom:64px;">
+        <div>
+          <div class="section-eyebrow">Service 01</div>
+          <div class="section-title" style="font-size:28px;">Virtual Chief Privacy Officer</div>
+          <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:18px;">Your practice needs a designated Privacy Officer to satisfy HPOA requirements — but you don't need a full-time hire. KNETIC acts as your fractional CPO, providing the expertise and accountability your regulatory college expects.</p>
+          <ul class="value-list">
+            <li>Named Privacy Officer designation for your practice files</li>
+            <li>Custom privacy policy suite — intake, consent, data handling, breach response</li>
+            <li>Annual staff privacy training (in-person or virtual)</li>
+            <li>Quarterly compliance reviews and policy updates</li>
+            <li>Priority incident response and breach notification support</li>
+            <li>Liaison with regulatory college on privacy matters</li>
+          </ul>
+          <button class="btn-primary" onclick="showPage('intake')">Enquire About vCPO →</button>
+        </div>
+        <div style="background:var(--light);border-radius:10px;padding:32px;border:1px solid var(--border);">
+          <div class="section-eyebrow" style="margin-bottom:16px;">Pricing</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:800;color:var(--navy);margin-bottom:4px;">From $350<span style="font-size:16px;font-weight:400;color:var(--muted)">/month</span></div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:22px;">Based on practice size. Initial on-site assessment required.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="padding:10px 13px;background:var(--white);border-radius:5px;border:1px solid var(--border);font-size:13px;"><strong>Solo Practitioner</strong> — from $350/mo</div>
+            <div style="padding:10px 13px;background:var(--white);border-radius:5px;border:1px solid var(--border);font-size:13px;"><strong>Small Clinic (2–5 providers)</strong> — from $650/mo</div>
+            <div style="padding:10px 13px;background:var(--white);border-radius:5px;border:1px solid var(--border);font-size:13px;"><strong>Multi-Site / Group Practice</strong> — Custom quote</div>
+          </div>
+        </div>
+      </div>
+      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:64px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-bottom:64px;">
+        <div style="background:var(--navy);border-radius:10px;padding:32px;">
+          <div style="font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">What's Included</div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>Pre-Assessment Questionnaire</strong><span>Intake form to scope your practice before we arrive</span></div></div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>Full Day On-Site Visit</strong><span>Walkthrough of all patient touchpoints, storage, IT, and reception</span></div></div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>Document &amp; Policy Audit</strong><span>Review of consent forms, privacy notices, staff agreements, EHR settings</span></div></div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>Written Compliance Report</strong><span>Findings, HPOA gap analysis, and prioritized remediation plan</span></div></div>
+          <div class="vcpo-step"><div class="vcpo-step-dot"></div><div><strong>Debrief Meeting</strong><span>Walk-through of findings with your leadership team — Q&amp;A included</span></div></div>
+        </div>
+        <div>
+          <div class="section-eyebrow">Service 02</div>
+          <div class="section-title" style="font-size:28px;">Full On-Site Privacy Assessment</div>
+          <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:18px;">We come to your practice and conduct a comprehensive privacy review — examining physical spaces, digital systems, staff practices, and documentation against HPOA requirements.</p>
+          <ul class="value-list">
+            <li>HPOA-aligned assessment framework</li>
+            <li>Physical and digital data flow mapping</li>
+            <li>Risk-rated findings: High / Medium / Low</li>
+            <li>Custom remediation roadmap with timelines</li>
+            <li>Suitable as evidence of due diligence for your college</li>
+          </ul>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:800;color:var(--navy);margin:18px 0 5px;">From $1,800</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:18px;">Per assessment. Travel outside Metro Vancouver quoted separately.</p>
+          <button class="btn-primary" onclick="showPage('intake')">Book an Assessment →</button>
+        </div>
+      </div>
+      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:64px;">
+      <div style="text-align:center;max-width:660px;margin:0 auto 44px;">
+        <div class="section-eyebrow">Service 03</div>
+        <div class="section-title" style="font-size:28px;">Online Privacy Risk Assessment</div>
+        <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:26px;">Answer questions about your practice and receive an instant risk score. A full written report with gap analysis and remediation roadmap is available for $295.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <div style="background:var(--light);border:1px solid var(--border);border-radius:8px;padding:22px 28px;flex:1;min-width:180px;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--navy);">Free</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">Instant risk score</div>
+            <button class="btn-outline" style="color:var(--navy);border-color:var(--navy);width:100%;" onclick="showPage('assessment')">Start Free →</button>
+          </div>
+          <div style="background:var(--navy);border-radius:8px;padding:22px 28px;flex:1;min-width:180px;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--gold);">$295</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:12px;">Full report + roadmap</div>
+            <button class="btn-primary" style="width:100%;" onclick="showPage('assessment')">Get Full Report →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="cta-strip">
+    <h2>Ready to Get Compliant?</h2>
+    <p>HPOA is in force. Book your assessment or contact us today.</p>
+    <div class="cta-btns">
+      <button class="btn-primary" onclick="showPage('intake')">Book an On-Site Assessment</button>
+      <button class="btn-outline" onclick="showPage('assessment')">Start Online Assessment</button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;letter-spacing:2px;color:#fff;">KNETIC Advisors Inc.</span><p>BC's dedicated healthcare privacy compliance firm.</p></div>
+      <div class="footer-col"><h4>Pages</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('services')">Services</a><a onclick="showPage('about')">About</a><a onclick="showPage('intake')">Get Started</a></div>
+      <div class="footer-col"><h4>Resources</h4><a href="https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/professional-regulation/health-professions-and-occupations-act" target="_blank">HPOA Legislation</a><a onclick="showPage('assessment')">Online Risk Assessment</a><a href="mailto:info@kneticadvisors.ca">info@kneticadvisors.ca</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 KNETIC Advisors Inc.</span></div>
+  </footer>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="page-hero">
+    <div class="section-eyebrow" style="color:var(--gold);margin-bottom:10px;">Who We Are</div>
+    <h1>About KNETIC Advisors</h1>
+    <p>A BC-based privacy advisory firm built specifically for the healthcare sector.</p>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+        <div>
+          <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:18px;">KNETIC Advisors Inc. was founded to fill a critical gap in the BC healthcare landscape: the need for dedicated, practical, and affordable privacy compliance support for regulated health practitioners and clinics.</p>
+          <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:18px;">As the Health Professions and Occupations Act (HPOA) comes into force on April 1, 2026, BC's regulated health professionals face new, more stringent privacy obligations. Many practices don't have the internal capacity — or the budget — to hire a full-time Privacy Officer. KNETIC was built to change that.</p>
+          <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:28px;">We combine deep knowledge of BC's healthcare regulatory environment with hands-on, on-site assessment methodology. We don't just deliver a report and walk away — we partner with your practice to implement real, sustainable privacy practices.</p>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px;">Our Mission</div>
+          <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:24px;">To make meaningful privacy compliance accessible and practical for every regulated health practice in British Columbia — regardless of size.</p>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:14px;">Our Values</div>
+          <ul class="value-list">
+            <li>Practical over theoretical — recommendations your team can actually implement</li>
+            <li>Transparent pricing with no hidden fees</li>
+            <li>Patient-centred — privacy compliance ultimately protects the people your practice serves</li>
+            <li>BC-first — deep understanding of local regulatory colleges and HPOA requirements</li>
+            <li>Ongoing partnership, not one-time engagements</li>
+          </ul>
+        </div>
+        <div>
+          <div style="background:var(--light);border-radius:10px;padding:32px;border:1px solid var(--border);margin-bottom:20px;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:18px;">Regulatory Coverage</div>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px;">KNETIC works with practices regulated under these BC colleges:</p>
+            <div style="display:flex;flex-direction:column;gap:0;">
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);font-size:13px;"><strong style="color:var(--navy);display:block;">College of Physicians &amp; Surgeons of BC</strong><span style="color:var(--muted);">Medical doctors and surgeons</span></div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);font-size:13px;"><strong style="color:var(--navy);display:block;">BC College of Nurses &amp; Midwives</strong><span style="color:var(--muted);">RNs, LPNs, NPs, midwives</span></div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);font-size:13px;"><strong style="color:var(--navy);display:block;">College of Pharmacists of BC</strong><span style="color:var(--muted);">Pharmacists and pharmacy technicians</span></div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);font-size:13px;"><strong style="color:var(--navy);display:block;">College of Dental Surgeons of BC</strong><span style="color:var(--muted);">Dentists and dental specialists</span></div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);font-size:13px;"><strong style="color:var(--navy);display:block;">CHCPBC</strong><span style="color:var(--muted);">Psychologists, social workers, OTs &amp; more</span></div>
+              <div style="padding:12px 0;font-size:13px;"><strong style="color:var(--navy);display:block;">College of Chiropractors / Optometrists of BC</strong><span style="color:var(--muted);">And additional regulated colleges</span></div>
+            </div>
+          </div>
+          <div style="background:var(--navy);border-radius:10px;padding:26px;text-align:center;">
+            <div style="font-size:12px;color:var(--steel);margin-bottom:5px;">Incorporated in British Columbia</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;color:var(--white);margin-bottom:3px;">KNETIC Advisors Inc.</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.35);">BC Corp · Privacy Advisory Services</div>
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:18px 0;">
+            <a href="mailto:info@kneticadvisors.ca" style="color:var(--gold);font-size:14px;text-decoration:none;font-weight:600;">info@kneticadvisors.ca</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;letter-spacing:2px;color:#fff;">KNETIC Advisors Inc.</span><p>BC's dedicated healthcare privacy compliance firm.</p></div>
+      <div class="footer-col"><h4>Pages</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('services')">Services</a><a onclick="showPage('intake')">Get Started</a></div>
+      <div class="footer-col"><h4>Contact</h4><a href="mailto:info@kneticadvisors.ca">info@kneticadvisors.ca</a><a href="https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/professional-regulation/health-professions-and-occupations-act" target="_blank">HPOA Legislation</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 KNETIC Advisors Inc.</span></div>
+  </footer>
+</div>
+
+<!-- INTAKE -->
+<div class="page" id="page-intake">
+  <div class="page-hero">
+    <div class="section-eyebrow" style="color:var(--gold);margin-bottom:10px;">Get Started</div>
+    <h1>Book Your Assessment</h1>
+    <p>Complete the intake form below and a KNETIC advisor will reach out within one business day.</p>
+  </div>
+  <div class="form-section">
+    <div class="form-wrap">
+      <div class="form-title">Practice Intake Form</div>
+      <div class="form-subtitle">All information is kept strictly confidential and used only to scope your assessment.</div>
+      <div class="form-row">
+        <div class="form-group"><label>First Name *</label><input type="text" placeholder="First name"></div>
+        <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Last name"></div>
+      </div>
+      <div class="form-group"><label>Practice / Clinic Name *</label><input type="text" placeholder="e.g. Westside Family Medicine"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Email Address *</label><input type="email" placeholder="you@yourclinic.ca"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="604-XXX-XXXX"></div>
+      </div>
+      <div class="form-group"><label>City / Practice Location *</label><input type="text" placeholder="City, BC"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Regulatory College *</label>
+          <select>
+            <option value="">Select your college…</option>
+            <option>College of Physicians &amp; Surgeons of BC</option>
+            <option>BC College of Nurses &amp; Midwives</option>
+            <option>College of Pharmacists of BC</option>
+            <option>College of Dental Surgeons of BC</option>
+            <option>CHCPBC (Psychology, SW, OT, etc.)</option>
+            <option>College of Chiropractors of BC</option>
+            <option>College of Optometrists of BC</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Number of Providers *</label>
+          <select>
+            <option value="">Select…</option>
+            <option>1 (Solo practice)</option>
+            <option>2–5</option>
+            <option>6–15</option>
+            <option>16–50</option>
+            <option>50+</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Service Interested In *</label>
+        <select>
+          <option value="">Select…</option>
+          <option>Full On-Site Privacy Assessment</option>
+          <option>Virtual Chief Privacy Officer (ongoing)</option>
+          <option>Both — Assessment + vCPO</option>
+          <option>Not sure — need guidance</option>
+        </select>
+      </div>
+      <hr class="form-divider">
+      <div class="form-group">
+        <label>Current Privacy Situation (check all that apply)</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox"><span>We don't have a designated Privacy Officer</span></label>
+          <label class="checkbox-item"><input type="checkbox"><span>Our privacy policies haven't been reviewed recently</span></label>
+          <label class="checkbox-item"><input type="checkbox"><span>We've had a privacy incident or complaint in the past</span></label>
+          <label class="checkbox-item"><input type="checkbox"><span>We're unsure if we meet HPOA requirements</span></label>
+          <label class="checkbox-item"><input type="checkbox"><span>We use cloud-based EHR / patient management software</span></label>
+        </div>
+      </div>
+      <hr class="form-divider">
+      <div class="form-group"><label>Additional Notes</label><textarea placeholder="Tell us anything else that would help us understand your practice and privacy needs…"></textarea></div>
+      <div class="form-group">
+        <label>Preferred Contact Method</label>
+        <select><option>Email</option><option>Phone call</option><option>Either is fine</option></select>
+      </div>
+      <button class="submit-btn" onclick="handleIntakeSubmit()">Submit Intake Form</button>
+      <div class="form-note">🔒 Your information is confidential. We'll respond within 1 business day.</div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;letter-spacing:2px;color:#fff;">KNETIC Advisors Inc.</span><p>BC's dedicated healthcare privacy compliance firm.</p></div>
+      <div class="footer-col"><h4>Pages</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('services')">Services</a><a onclick="showPage('about')">About</a></div>
+      <div class="footer-col"><h4>Contact</h4><a href="mailto:info@kneticadvisors.ca">info@kneticadvisors.ca</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 KNETIC Advisors Inc.</span></div>
+  </footer>
+</div>
+
+<!-- ASSESSMENT -->
+<div class="page" id="page-assessment">
+  <div class="page-hero">
+    <div class="section-eyebrow" style="color:var(--gold);margin-bottom:10px;">Self-Assessment Tool</div>
+    <h1>Privacy Risk Assessment</h1>
+    <p>Answer 10 questions about your practice. Get an instant risk score — or purchase a full written compliance report for $295.</p>
+  </div>
+  <div style="background:var(--light);padding:48px 24px;">
+    <div class="assessment-wrap">
+      <div class="assessment-intro">
+        <h2>About This Assessment</h2>
+        <p>This tool evaluates your practice's privacy posture across the key domains required under BC's Health Professions and Occupations Act (HPOA). Takes approximately 5–8 minutes.</p>
+        <p>Your instant score is <strong>free</strong>. A detailed PDF report with gap analysis and a prioritized compliance roadmap is available for $295 — a fraction of the cost of a compliance failure.</p>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <div class="price-badge">Free instant score &nbsp;|&nbsp; <strong>$295</strong> &nbsp;full report</div>
+          <a href="https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/professional-regulation/health-professions-and-occupations-act" target="_blank" style="font-size:13px;color:var(--cobalt);font-weight:600;text-decoration:underline;">Based on HPOA requirements →</a>
+        </div>
+      </div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">1</div><h3>Does your practice have a designated Privacy Officer?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q1" value="3"><div class="radio-label">Yes — a named individual is formally designated and documented<small>Best practice — required under HPOA</small></div></label><label class="radio-item"><input type="radio" name="q1" value="1"><div class="radio-label">Informally — someone handles it but it's not formally documented<small>Partial — needs formalization</small></div></label><label class="radio-item"><input type="radio" name="q1" value="0"><div class="radio-label">No designated Privacy Officer<small>High risk — HPOA requires this</small></div></label></div></div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">2</div><h3>When were your privacy policies last reviewed?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q2" value="3"><div class="radio-label">Within the last 12 months<small>Compliant — policies should reflect HPOA</small></div></label><label class="radio-item"><input type="radio" name="q2" value="1"><div class="radio-label">1–3 years ago<small>Moderate risk — may not reflect HPOA requirements</small></div></label><label class="radio-item"><input type="radio" name="q2" value="0"><div class="radio-label">More than 3 years ago / No written policies<small>High risk</small></div></label></div></div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">3</div><h3>Do you have a written Privacy Breach Response Plan?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q3" value="3"><div class="radio-label">Yes — documented steps for breach identification, containment, notification<small>Required under HPOA mandatory notification rules</small></div></label><label class="radio-item"><input type="radio" name="q3" value="1"><div class="radio-label">Informally — we know what to do but it's not written<small>Moderate risk</small></div></label><label class="radio-item"><input type="radio" name="q3" value="0"><div class="radio-label">No breach response plan<small>High risk — mandatory notification required by HPOA</small></div></label></div></div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">4</div><h3>How is patient data stored?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q4" value="3"><div class="radio-label">Primarily electronic — encrypted, access-controlled EHR<small>Strong if properly configured</small></div></label><label class="radio-item"><input type="radio" name="q4" value="1"><div class="radio-label">Mix of paper and electronic<small>Moderate risk — physical data needs formal controls</small></div></label><label class="radio-item"><input type="radio" name="q4" value="0"><div class="radio-label">Primarily paper / unencrypted digital files<small>High risk</small></div></label></div></div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">5</div><h3>Do staff receive privacy training?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q5" value="3"><div class="radio-label">Yes — formal training at onboarding and annually<small>Best practice</small></div></label><label class="radio-item"><input type="radio" name="q5" value="1"><div class="radio-label">Informally — ad hoc, no documented training<small>Moderate risk</small></div></label><label class="radio-item"><input type="radio" name="q5" value="0"><div class="radio-label">No formal privacy training<small>High risk</small></div></label></div></div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">6</div><h3>Do third-party vendors access patient data (billing, EHR, labs)?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q6" value="3"><div class="radio-label">Yes — and we have signed Data Sharing / BAA agreements<small>Compliant</small></div></label><label class="radio-item"><input type="radio" name="q6" value="1"><div class="radio-label">Yes — but no formal agreements in place<small>High risk — third-party breaches are your liability</small></div></label><label class="radio-item"><input type="radio" name="q6" value="2"><div class="radio-label">No third parties access patient data<small>Lower risk</small></div></label></div></div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">7</div><h3>How do you obtain and document patient consent?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q7" value="3"><div class="radio-label">Written consent at intake with clear explanation of data use<small>Best practice</small></div></label><label class="radio-item"><input type="radio" name="q7" value="1"><div class="radio-label">Verbal consent — not always documented<small>Moderate risk</small></div></label><label class="radio-item"><input type="radio" name="q7" value="0"><div class="radio-label">Consent is implicit / not formally obtained<small>High risk</small></div></label></div></div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">8</div><h3>Is patient data accessible only to those who need it?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q8" value="3"><div class="radio-label">Yes — role-based access controls in place and audited<small>Best practice</small></div></label><label class="radio-item"><input type="radio" name="q8" value="1"><div class="radio-label">Somewhat — but not formally controlled or logged<small>Moderate risk</small></div></label><label class="radio-item"><input type="radio" name="q8" value="0"><div class="radio-label">All staff can access all patient records<small>High risk</small></div></label></div></div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">9</div><h3>Do you have a records retention and destruction policy?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q9" value="3"><div class="radio-label">Yes — documented retention schedules and secure destruction<small>Compliant</small></div></label><label class="radio-item"><input type="radio" name="q9" value="1"><div class="radio-label">Partial — we keep records but no formal schedule<small>Moderate risk</small></div></label><label class="radio-item"><input type="radio" name="q9" value="0"><div class="radio-label">No formal policy<small>High risk</small></div></label></div></div>
+
+      <div class="assessment-step"><div class="step-header"><div class="step-num">10</div><h3>Has your practice reviewed HPOA privacy requirements?</h3></div><div class="radio-group"><label class="radio-item"><input type="radio" name="q10" value="3"><div class="radio-label">Yes — we've reviewed HPOA and are actively working toward compliance<small>Proactive</small></div></label><label class="radio-item"><input type="radio" name="q10" value="1"><div class="radio-label">Partially — we're aware but haven't reviewed our practices<small>Moderate risk</small></div></label><label class="radio-item"><input type="radio" name="q10" value="0"><div class="radio-label">No — we haven't looked at HPOA requirements yet<small>High risk — HPOA is now in force</small></div></label></div></div>
+
+      <button class="assessment-submit" onclick="calculateScore()">Calculate My Privacy Risk Score →</button>
+
+      <div class="score-panel" id="score-panel">
+        <div class="score-number" id="score-num">0</div>
+        <div class="score-label">Privacy Score / 30</div>
+        <div class="score-bar-wrap"><div class="score-bar" id="score-bar"></div></div>
+        <div class="score-rating" id="score-rating"></div>
+        <div class="score-desc" id="score-desc"></div>
+        <div class="score-cta">
+          <button class="btn-primary" onclick="showPage('intake')">Book an On-Site Assessment</button>
+          <button class="btn-outline" style="border-color:rgba(255,255,255,0.3);" onclick="alert('Thank you for your interest! Full report purchase coming soon — contact info@kneticadvisors.ca to order.')">Get Full Report — $295</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;letter-spacing:2px;color:#fff;">KNETIC Advisors Inc.</span><p>BC's dedicated healthcare privacy compliance firm.</p></div>
+      <div class="footer-col"><h4>Pages</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('services')">Services</a><a onclick="showPage('intake')">Get Started</a></div>
+      <div class="footer-col"><h4>Resources</h4><a href="https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/professional-regulation/health-professions-and-occupations-act" target="_blank">HPOA Legislation</a><a href="mailto:info@kneticadvisors.ca">info@kneticadvisors.ca</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 KNETIC Advisors Inc.</span></div>
+  </footer>
+</div>
+
+<script>
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
+  const nb=document.getElementById('nav-'+name);
+  if(nb)nb.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function handleIntakeSubmit(){
+  alert('Thank you! Your intake form has been submitted.\n\nA KNETIC advisor will contact you within 1 business day.\n\nFor urgent matters: info@kneticadvisors.ca');
+}
+function calculateScore(){
+  let score=0,answered=0;
+  for(let i=1;i<=10;i++){
+    const sel=document.querySelector(`input[name="q${i}"]:checked`);
+    if(sel){score+=parseInt(sel.value);answered++;}
+  }
+  if(answered<10){alert('Please answer all 10 questions to get your score.');return;}
+  const panel=document.getElementById('score-panel');
+  panel.classList.add('visible');
+  document.getElementById('score-num').textContent=score;
+  const pct=Math.round((score/30)*100);
+  const bar=document.getElementById('score-bar');
+  bar.style.width=pct+'%';
+  let rating,desc,color;
+  if(score>=25){rating='✅ Strong Compliance Posture';color='#4caf82';desc='Your practice shows strong privacy foundations. We recommend a formal HPOA review to confirm all new requirements are met and document your posture for your regulatory college.';}
+  else if(score>=18){rating='⚠️ Moderate Risk — Action Recommended';color='#c0a96a';desc='Your practice has some controls in place but has meaningful gaps. A KNETIC assessment will identify and prioritize your next steps before your college reviews compliance.';}
+  else if(score>=10){rating='🔴 Elevated Risk — Prompt Action Required';color='#e07a3a';desc='Your practice has significant compliance gaps under the HPOA. We strongly recommend booking an on-site assessment to prevent potential disciplinary exposure with your regulatory college.';}
+  else{rating='🚨 Critical Risk — Immediate Action Required';color='#d44';desc='Your practice faces serious HPOA non-compliance risk. As regulatory colleges begin enforcing the new legislation, these gaps could result in formal disciplinary action. Contact KNETIC today.';}
+  bar.style.background=color;
+  document.getElementById('score-rating').textContent=rating;
+  document.getElementById('score-rating').style.color=color;
+  document.getElementById('score-desc').textContent=desc;
+  panel.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body>
+</html>
